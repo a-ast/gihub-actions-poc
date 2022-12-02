@@ -8,7 +8,7 @@ on:
 
 jobs:
 
-  test-functional:
+  main:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -24,18 +24,14 @@ jobs:
       - name: Build
         run: go build -o main -v ./...
 
-      - name: "Run the app"
+      - name: Run the app
         run: ./main &
 
-#      - name: "Test backend is running"
-#        run: |
-#          sleep 10 &&
-#          curl http://localhost:8888/hi
-
-      - name: "Wait a second..."
+      - name: Wait a second...
         run: |
           sleep 10
 
-      - uses: matt-ball/newman-action@master
+      - name: Run functional tests
+        uses: matt-ball/newman-action@master
         with:
           collection: test/postman-tests.json
