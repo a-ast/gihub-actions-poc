@@ -24,11 +24,9 @@ jobs:
       - name: Build
         run: go build -o main -v ./...
 
-#      - name: "Run the app in docker"
-#        run: ./main
+      - name: "Run the app"
+        start: ./main
       - name: "Test backend is running"
         run: |
           sleep 20 &&
           curl http://localhost:8888/hi
-        with:
-          start: ./main
