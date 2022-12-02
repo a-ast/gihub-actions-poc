@@ -27,7 +27,15 @@ jobs:
       - name: "Run the app"
         run: ./main &
 
-      - name: "Test backend is running"
+#      - name: "Test backend is running"
+#        run: |
+#          sleep 10 &&
+#          curl http://localhost:8888/hi
+
+      - name: "Wait a second..."
         run: |
-          sleep 10 &&
-          curl http://localhost:8888/hi
+          sleep 10
+
+      - uses: matt-ball/newman-action@master
+        with:
+          collection: test/postman-tests.json
