@@ -12,11 +12,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - name: Create .env
         uses: SpicyPizza/create-envfile@v1.3
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.18
+
+      - name: Build
+        run: go build -v ./...
+
       - name: "Run the app in docker"
-        run: docker-compose -f docker-compose.yml up --build -d
+        run: ./main
       - name: "Test backend is running"
         run: |
           sleep 20 &&
-          curl http://localhost:8888
+          curl http://localhost:8888/hi
