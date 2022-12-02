@@ -25,8 +25,9 @@ jobs:
         run: go build -o main -v ./...
 
       - name: "Run the app"
-        start: ./main
+        run: ./main &
+
       - name: "Test backend is running"
         run: |
-          sleep 20 &&
+          sleep 10 &&
           curl http://localhost:8888/hi
