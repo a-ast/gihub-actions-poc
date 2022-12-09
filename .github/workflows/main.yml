@@ -27,10 +27,6 @@ jobs:
       - name: Run the app
         run: ./main &
 
-      - name: Wait a second...
-        run: |
-          sleep 10
-
       - name: Run functional tests
         uses: matt-ball/newman-action@master
         with:
